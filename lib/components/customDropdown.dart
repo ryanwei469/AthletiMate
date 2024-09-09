@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 
 class CustomDropdown extends StatefulWidget{
-  const CustomDropdown({super.key});
+  const CustomDropdown({super.key, required this.onDateOfBirthSelected});
+
+  final ValueChanged<Map<String, String>> onDateOfBirthSelected; // Callback for DOB
 
   @override
   State<CustomDropdown> createState() => _CustomDropdownState();
 }
 
 class _CustomDropdownState extends State<CustomDropdown> {
-
-  String selectedValue = "Month";
+  String selectedMonth = "Month";
   final monthList = ["Month","1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+
+  TextEditingController _dayController = TextEditingController();
+  TextEditingController _yearController = TextEditingController();
+
+  void _notifyParent() {
+    widget.onDateOfBirthSelected({
+      'month': selectedMonth,
+      'day': _dayController.text,
+      'year': _yearController.text,
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +32,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
           width: 120,
           padding: EdgeInsets.only(right: 5),
           child: DropdownButtonFormField(
-              value: selectedValue,
+              value: selectedMonth,
               items: monthList.map((e) => DropdownMenuItem(
                 value: e,
                 child: Text(
@@ -32,7 +44,10 @@ class _CustomDropdownState extends State<CustomDropdown> {
               )).toList(),
               onChanged: (val){
                 setState(() {
-                  selectedValue = val as String;
+                  selectedMonth = val as String;
+
+                  // Notify parent of the selected Month
+                  _notifyParent();
                 });
               },
               icon: Icon(
@@ -54,6 +69,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
           padding: EdgeInsets.symmetric(horizontal: 5),
           child: TextFormField(
             validator: (value) {},
+            controller: _dayController,
             obscureText: false,
             autocorrect: false,
             enableSuggestions: false,
@@ -72,6 +88,9 @@ class _CustomDropdownState extends State<CustomDropdown> {
               )
             ),
             keyboardType: TextInputType.number,
+            onChanged: (val){
+              _notifyParent();
+            },
           )
         ),
         Container(
@@ -79,6 +98,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
           padding: EdgeInsets.symmetric(horizontal: 5),
           child: TextFormField(
             validator: (value) {},
+            controller: _yearController,
             obscureText: false,
             autocorrect: false,
             enableSuggestions: false,
@@ -97,6 +117,9 @@ class _CustomDropdownState extends State<CustomDropdown> {
               )
             ),
             keyboardType: TextInputType.number,
+            onChanged: (val){
+              _notifyParent();
+            },
           )
         )
       ],
