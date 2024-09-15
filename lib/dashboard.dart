@@ -1,3 +1,5 @@
+import 'package:athletimate/components/bottomBar.dart';
+import 'package:athletimate/components/homeBar.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget{
@@ -10,6 +12,9 @@ class Dashboard extends StatefulWidget{
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: HomeBar(context),
+      bottomNavigationBar: BottomBar(),
+    );
   }
 }
