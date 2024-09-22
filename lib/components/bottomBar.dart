@@ -1,3 +1,5 @@
+import 'package:athletimate/dashboard.dart';
+import 'package:athletimate/maps.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatefulWidget{
@@ -6,6 +8,29 @@ class BottomBar extends StatefulWidget{
 }
 
 class _BottomBarState extends State<BottomBar>{
+  int _currentIndex = 0;
+
+  void _onTapped(int index){
+    setState(() {
+      _currentIndex = index;
+    });
+
+    switch(index){
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Dashboard())
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Maps())
+        );
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -18,6 +43,8 @@ class _BottomBarState extends State<BottomBar>{
           fit: BoxFit.fill, // gave the image a 40% height of screen size // to cover the entire target box
         ),
         BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: _onTapped,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           elevation: 0,
@@ -35,6 +62,15 @@ class _BottomBarState extends State<BottomBar>{
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.location_on_rounded,
+                color: Colors.white,
+                size: 30,
+              ),
+              label: "",
+              backgroundColor: Colors.transparent
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.search_rounded,
                 color: Colors.white,
                 size: 30,
               ),

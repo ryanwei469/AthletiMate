@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "995965661465",
+    "project_id": "athletimate",
+    "storage_bucket": "athletimate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995965661465:android:74788c1e35257fa0bf1588",
+        "android_client_info": {
+          "package_name": "com.ryan.athletimate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDojEPYR7lhM1S-UueM9DRX5nnrcrzEwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

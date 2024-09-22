@@ -13,7 +13,7 @@ AppBar HomeBar(BuildContext context){
         InkWell(
           onTap: (){},
           child: Icon(
-            Icons.search_rounded
+            Icons.chat_rounded
           ),
         )
       ],

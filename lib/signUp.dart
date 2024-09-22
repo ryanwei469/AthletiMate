@@ -134,6 +134,13 @@ class _SignUpState extends State<SignUp> {
                     ))
                   );
                 }, 
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(Color(0xFF1145A8)),
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                  ),
+                  padding: WidgetStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(vertical: 15, horizontal: 30))
+                ),
                 child: Text("Continue")
               )
             ],

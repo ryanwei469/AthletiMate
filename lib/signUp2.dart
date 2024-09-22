@@ -13,7 +13,7 @@ class SignUp2 extends StatefulWidget{
     super.key, 
     required this.name, 
     required this.email, 
-    required this.pwd
+    required this.pwd,
   });
   final String name, email, pwd;
 
@@ -22,7 +22,7 @@ class SignUp2 extends StatefulWidget{
 }
 
 class _SignUp2State extends State<SignUp2> {
-  // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Map<String, String> _dob = {
     'month': "Month",
@@ -47,31 +47,31 @@ class _SignUp2State extends State<SignUp2> {
   // A function to create a new user
   Future<void> _createUser() async {
     try {
-      // // Create user with email and password
-      // UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      //   email: widget.email,
-      //   password: widget.pwd,
-      // );
+      // Create user with email and password
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: widget.email,
+        password: widget.pwd,
+      );
 
-      // // Extract user details
-      // User firebaseUser = userCredential.user!;
-      // final user = UserModel(
-      //   userId: firebaseUser.uid,
-      //   name: widget.name,
-      //   email: widget.email,
-      //   pwd: widget.pwd
-      //   dob: '${_dob['month']}/${_dob['day']}/${_dob['year']}', // Format DOB
-      //   selectedSports: _selectedSports,
-      // );
+      // Extract user details
+      User firebaseUser = userCredential.user!;
+      final user = UserModel(
+        userId: firebaseUser.uid,
+        name: widget.name,
+        email: widget.email,
+        pwd: widget.pwd,
+        dob: '${_dob['month']}/${_dob['day']}/${_dob['year']}', // Format DOB
+        selectedSports: _selectedSports,
+      );
 
-      // // Save user to Firestore
-      // await _firestore.collection('users').doc(user.userId).set({
-      //   'name': user.name,
-      //   'email': user.email,
-      //   'pwd': user.pwd,
-      //   'dob': user.dob,
-      //   'selectedSports': user.selectedSports
-      // });
+      // Save user to Firestore
+      await _firestore.collection('users').doc(user.userId).set({
+        'name': user.name,
+        'email': user.email,
+        'pwd': user.pwd,
+        'dob': user.dob,
+        'selectedSports': user.selectedSports
+      });
 
       // Navigate to the next screen
       Navigator.of(context).push(
@@ -107,6 +107,13 @@ class _SignUp2State extends State<SignUp2> {
               Center(
                 child: ElevatedButton(
                   onPressed: _createUser,
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all<Color>(Color(0xFF1145A8)),
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
+                    ),
+                    padding: WidgetStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(vertical: 15, horizontal: 30))
+                  ),
                   child: Text("Continue")
                 ),
               )
