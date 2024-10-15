@@ -1,4 +1,5 @@
 import 'package:athletimate/components/topBar.dart';
+import 'package:athletimate/model/User.dart';
 import 'package:athletimate/signUp2.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,8 @@ class SignUp extends StatefulWidget{
 
 class _SignUpState extends State<SignUp> {
   TextEditingController _fullNameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +69,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     TextFormField(
                       validator: (value) {},
-                      controller: _fullNameController,
+                      controller: _emailController,
                       obscureText: false,
                       autocorrect: true,
                       enableSuggestions: false,
@@ -99,7 +102,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     TextFormField(
                       validator: (value) {},
-                      controller: _fullNameController,
+                      controller: _passwordController,
                       obscureText: true,
                       autocorrect: true,
                       enableSuggestions: false,
@@ -124,9 +127,20 @@ class _SignUpState extends State<SignUp> {
               ElevatedButton(
                 onPressed: (){
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => SignUp2())
+                    MaterialPageRoute(builder: (context) => SignUp2(
+                      name: _fullNameController.text,
+                      email: _emailController.text,
+                      pwd: _passwordController.text,
+                    ))
                   );
                 }, 
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all<Color>(Color(0xFF1145A8)),
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                  ),
+                  padding: WidgetStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(vertical: 15, horizontal: 30))
+                ),
                 child: Text("Continue")
               )
             ],

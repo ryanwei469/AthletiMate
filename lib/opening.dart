@@ -26,12 +26,13 @@ class Opening extends StatelessWidget{
                 );
               }, 
               style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all<Color>(Colors.blue),
+                backgroundColor: WidgetStateProperty.all<Color>(Color(0xFF1145A8)),
                 shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
-                )
+                ),
+                padding: WidgetStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(vertical: 15, horizontal: 30))
               ),
-              child: Text("Sign Up",)
+              child: Text("Sign Up")
             ),
             ElevatedButton(
               onPressed: (){
@@ -39,6 +40,13 @@ class Opening extends StatelessWidget{
                   MaterialPageRoute(builder: (context) => SignIn())
                 );
               }, 
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all<Color>(Color(0xFF1145A8)),
+                shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
+                ),
+                padding: WidgetStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(vertical: 15, horizontal: 30))
+              ),
               child: Text("Sign In")
             )
           ],
