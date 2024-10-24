@@ -28,7 +28,7 @@ class _BottomBarState extends State<BottomBar> {
       case 1:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Maps()),
+          MaterialPageRoute(builder: (context) => Profile()),
         );
         break;
       case 2:
