@@ -2,9 +2,6 @@ import 'package:athletimate/components/bottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 class Maps extends StatefulWidget {
   @override
   _MapsState createState() => _MapsState();
@@ -43,7 +40,7 @@ class _MapsState extends State<Maps> {
       ),
       Marker(
         markerId: MarkerId('2'),
-        position: LatLng(37.43296265331129, -122.08832357078792),
+        position: LatLng(25.19724867821725, 55.274281837399585),
         infoWindow: InfoWindow(title: "Location 2", snippet: "Details of Location 2"),
         onTap: () {
           setState(() {
@@ -59,64 +56,64 @@ class _MapsState extends State<Maps> {
     return Scaffold(
       bottomNavigationBar: BottomBar(),
       body: _isLoading
-    ? Center(child: CircularProgressIndicator()) // Show loading spinner until map is ready
-    : Stack(
-        children: [
-          // Google Maps widget
-          GoogleMap(
-            onMapCreated: (controller) {
-              _mapController = controller;
-            },
-            initialCameraPosition: CameraPosition(
-              target: LatLng(37.42796133580664, -122.085749655962),
-              zoom: 14.0,
-            ),
-            markers: _markers,
-            // Disable gestures that aren't needed
-            myLocationEnabled: true,
-            myLocationButtonEnabled: false,
-            zoomGesturesEnabled: true,
-            tiltGesturesEnabled: false,
-          ),
-          // Chat Icon in the top right corner
-          Positioned(
-            top: 20.0,
-            right: 20.0,
-            child: GestureDetector(
-              onTap: () {
-                // Handle chat icon tap
+        ? Center(child: CircularProgressIndicator()) // Show loading spinner until map is ready
+        : Stack(
+          children: [
+            // Google Maps widget
+            GoogleMap(
+              onMapCreated: (controller) {
+                _mapController = controller;
               },
-              child: const Icon(
-                Icons.chat_bubble,
-                color: Colors.blue,
-                size: 30.0,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(37.42796133580664, -122.085749655962),
+                zoom: 14.0,
+              ),
+              markers: _markers,
+              // Disable gestures that aren't needed
+              myLocationEnabled: true,
+              myLocationButtonEnabled: false,
+              zoomGesturesEnabled: true,
+              tiltGesturesEnabled: false,
+            ),
+            // Chat Icon in the top right corner
+            Positioned(
+              top: 20.0,
+              right: 20.0,
+              child: GestureDetector(
+                onTap: () {
+                  // Handle chat icon tap
+                },
+                child: const Icon(
+                  Icons.chat_bubble,
+                  color: Colors.blue,
+                  size: 30.0,
+                ),
               ),
             ),
-          ),
-          // Bottom card to display location details
-          if (_selectedLocation.isNotEmpty)
-            Positioned(
-              bottom: 80.0, // Adjust to avoid overlapping with BottomNavBar
-              left: 20.0,
-              right: 20.0,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                elevation: 5,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    _selectedLocation,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+            // Bottom card to display location details
+            if (_selectedLocation.isNotEmpty)
+              Positioned(
+                bottom: 80.0, // Adjust to avoid overlapping with BottomNavBar
+                left: 20.0,
+                right: 20.0,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      _selectedLocation,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-        ],
+            ],
       ),
     );
   }
