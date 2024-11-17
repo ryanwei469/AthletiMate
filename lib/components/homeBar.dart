@@ -1,3 +1,4 @@
+import 'package:athletimate/messages.dart';
 import 'package:flutter/material.dart';
 
 AppBar HomeBar(BuildContext context){
@@ -11,7 +12,11 @@ AppBar HomeBar(BuildContext context){
       children: [
         Text("ATHLETIMATE"),
         InkWell(
-          onTap: (){},
+          onTap: (){
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => Messages())
+            );
+          },
           child: Icon(
             Icons.chat_rounded
           ),

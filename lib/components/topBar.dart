@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-AppBar TopBar(BuildContext context){
+AppBar TopBar(BuildContext context, String title) {
   return AppBar(
     leading: const SizedBox.shrink(),
     leadingWidth: 0,
@@ -18,22 +18,22 @@ AppBar TopBar(BuildContext context){
           child: Row(
             children: [
               IconButton(
-                onPressed: (){
+                onPressed: () {
                   Navigator.pop(context);
-                }, 
-                icon: Icon(
+                },
+                icon: const Icon(
                   Icons.arrow_back,
                   size: 24,
-                  color: Colors.grey
-                )
+                  color: Colors.grey,
+                ),
               ),
-              SizedBox(
-                width: 100,
+              const SizedBox(
+                width: 80,
               ),
-              Text("Sign Up")
+              Center(child: Text(title)), // Use the passed title here
             ],
           ),
-        )
+        ),
       ],
     ),
   );

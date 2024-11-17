@@ -18,7 +18,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopBar(context),
+      appBar: TopBar(context, "SIGN UP"),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.all(8),

@@ -83,7 +83,7 @@ class _SignUp2State extends State<SignUp2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopBar(context),
+      appBar: TopBar(context, "SIGN UP"),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),

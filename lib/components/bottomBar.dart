@@ -2,6 +2,7 @@ import 'package:athletimate/dashboard.dart';
 import 'package:athletimate/maps.dart';
 import 'package:athletimate/profile.dart';
 import 'package:athletimate/search.dart';
+import 'package:athletimate/settings.dart';
 import 'package:flutter/material.dart';
 
 // Simpler code
@@ -35,6 +36,12 @@ class _BottomBarState extends State<BottomBar> {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Search()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Settings()),
         );
         break;
     }
@@ -71,6 +78,8 @@ class _BottomBarState extends State<BottomBar> {
               _buildBottomNavItem(Icons.location_on_rounded, 1),
               _buildHorizontalLine(),
               _buildBottomNavItem(Icons.search_rounded, 2),
+              _buildHorizontalLine(),
+              _buildBottomNavItem(Icons.settings, 3),
             ],
           ),
         ),
