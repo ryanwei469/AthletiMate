@@ -1,3 +1,4 @@
+import 'package:athletimate/chatList.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ class ExploreBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false, // removes the default back arrow
       backgroundColor: Colors.white, // Optional: Set background color
-      toolbarHeight: 200,
+      toolbarHeight: 150,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -32,7 +33,11 @@ class ExploreBar extends StatelessWidget implements PreferredSizeWidget {
               ),
               IconButton(
                 icon: Icon(Icons.chat),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ChatList())
+                  );
+                },
               ),
             ],
           ),
