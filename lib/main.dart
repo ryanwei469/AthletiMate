@@ -1,3 +1,4 @@
+import 'package:athletimate/chatList.dart';
 import 'package:athletimate/dashboard.dart';
 import 'package:athletimate/maps.dart';
 import 'package:athletimate/profile.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Search()
+      home: ChatList()
     );
   }
 }

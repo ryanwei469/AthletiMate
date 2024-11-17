@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-
 class ChatDetail extends StatefulWidget {
   final String userName;
 
@@ -90,12 +88,15 @@ class _ChatDetailState extends State<ChatDetail> {
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                     margin: EdgeInsets.symmetric(vertical: 5),
                     decoration: BoxDecoration(
-                      color: isMe ? Colors.teal[100] : Colors.grey[300],
+                      color: isMe ? Color(0xFF5271FF) : Colors.grey[300],
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
                       message['text']!,
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: isMe ? Colors.white : Colors.black, // Sender text color
+                      ),
                     ),
                   ),
                 );
@@ -108,7 +109,7 @@ class _ChatDetailState extends State<ChatDetail> {
               children: [
                 IconButton(
                   icon: Icon(Icons.emoji_emotions_outlined),
-                  color: Colors.teal,
+                  color: Color(0xFF5271FF), // Emoji icon color
                   onPressed: _showEmojiPicker,
                 ),
                 Expanded(
@@ -125,7 +126,7 @@ class _ChatDetailState extends State<ChatDetail> {
                 ),
                 IconButton(
                   icon: Icon(Icons.send),
-                  color: Colors.teal,
+                  color: Color(0xFF5271FF), // Send icon color
                   onPressed: _sendMessage,
                 ),
               ],
