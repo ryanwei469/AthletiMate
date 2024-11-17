@@ -1,15 +1,14 @@
 import 'package:athletimate/components/customDropdown.dart';
 import 'package:athletimate/components/customSelection.dart';
 import 'package:athletimate/components/topBar.dart';
-import 'package:athletimate/model/User.dart';
 import 'package:athletimate/signUp3.dart';
 import 'package:flutter/material.dart';
 
-class SignUp2 extends StatefulWidget{
+class SignUp2 extends StatefulWidget {
   const SignUp2({
-    super.key, 
-    required this.name, 
-    required this.email, 
+    super.key,
+    required this.name,
+    required this.email,
     required this.pwd,
   });
   final String name, email, pwd;
@@ -19,8 +18,6 @@ class SignUp2 extends StatefulWidget{
 }
 
 class _SignUp2State extends State<SignUp2> {
-  // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   Map<String, String> _dob = {
     'month': "Month",
     'day': "",
@@ -41,85 +38,117 @@ class _SignUp2State extends State<SignUp2> {
     });
   }
 
-  // A function to create a new user
-  // Future<void> _createUser() async {
-  //   try {
-  //     // Create user with email and password
-  //     UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-  //       email: widget.email,
-  //       password: widget.pwd,
-  //     );
-
-  //     // Extract user details
-  //     User firebaseUser = userCredential.user!;
-  //     final user = UserModel(
-  //       userId: firebaseUser.uid,
-  //       name: widget.name,
-  //       email: widget.email,
-  //       pwd: widget.pwd,
-  //       dob: '${_dob['month']}/${_dob['day']}/${_dob['year']}', // Format DOB
-  //       selectedSports: _selectedSports,
-  //     );
-
-  //     // Save user to Firestore
-  //     await _firestore.collection('users').doc(user.userId).set({
-  //       'name': user.name,
-  //       'email': user.email,
-  //       'pwd': user.pwd,
-  //       'dob': user.dob,
-  //       'selectedSports': user.selectedSports
-  //     });
-
-  //     // Navigate to the next screen
-  //     Navigator.of(context).push(
-  //       MaterialPageRoute(builder: (context) => SignUp3()),
-  //     );
-  //   } catch (e) {
-  //     // Handle errors here
-  //     print('Error during user creation: $e');
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopBar(context, "SIGN UP"),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      appBar: TopBar(context),
+      body: GestureDetector(
+        // Dismiss keyboard when tapping anywhere outside of the text fields
+        onTap: () {
+          // Close the keyboard if it's open
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: SingleChildScrollView(
+          child: Stack(
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 8),
-                child: Text("Date of Birth"),
-              ),
-              CustomDropdown(onDateOfBirthSelected: _onDateOfBirthSelected),
-              const SizedBox(height: 15),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 8),
-                child: Text("Sports Tag Selection"),
-              ),
-              CustomSelection(onSelectionChanged: _onSelectionChanged),
-              Center(
-                child: ElevatedButton(
-                  // onPressed: _createUser,
-                  onPressed: (){},
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all<Color>(Color(0xFF1145A8)),
-                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
-                    ),
-                    padding: WidgetStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(vertical: 15, horizontal: 30))
-                  ),
-                  child: Text("Continue")
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/bg2.jpg',
+                  fit: BoxFit.cover,
                 ),
-              )
-            ]
+              ),
+              Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 45, bottom: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.arrow_back, color: Colors.white),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                        SizedBox(width: 90),
+                        Text(
+                          "SIGN UP",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8),
+                            child: Text(
+                              "Date of Birth",
+                              style: TextStyle(
+                                color: Colors.white
+                              ),
+                            ),
+                          ),
+                          CustomDropdown(onDateOfBirthSelected: _onDateOfBirthSelected),
+                          const SizedBox(height: 15),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8),
+                            child: Text(
+                              "Sports Tag Selection",
+                              style: TextStyle(
+                                color: Colors.white
+                              ),
+                            ),
+                          ),
+                          CustomSelection(onSelectionChanged: _onSelectionChanged),
+                          SizedBox(height: 35),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 55),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (context) => SignUp3())
+                                  );
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(Color(0xFF1145A8)),
+                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(40),
+                                    ),
+                                  ),
+                                  padding: MaterialStateProperty.all<EdgeInsets>(
+                                    const EdgeInsets.symmetric(vertical: 15),
+                                  ),
+                                ),
+                                child: const Text(
+                                  "Continue",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
-        
-      )
+      ),
     );
   }
 }

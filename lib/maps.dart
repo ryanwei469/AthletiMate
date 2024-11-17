@@ -1,3 +1,4 @@
+import 'package:athletimate/chatList.dart';
 import 'package:athletimate/components/bottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -54,7 +55,7 @@ class _MapsState extends State<Maps> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomBar(),
+      // bottomNavigationBar: BottomBar(),
       body: _isLoading
         ? Center(child: CircularProgressIndicator()) // Show loading spinner until map is ready
         : Stack(
@@ -77,16 +78,16 @@ class _MapsState extends State<Maps> {
             ),
             // Chat Icon in the top right corner
             Positioned(
-              top: 20.0,
-              right: 20.0,
+              top: 38,
+              right: 16,
               child: GestureDetector(
                 onTap: () {
-                  // Handle chat icon tap
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ChatList())
+                  );
                 },
                 child: const Icon(
-                  Icons.chat_bubble,
-                  color: Colors.blue,
-                  size: 30.0,
+                  Icons.chat_rounded
                 ),
               ),
             ),
@@ -113,6 +114,10 @@ class _MapsState extends State<Maps> {
                   ),
                 ),
               ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: BottomBar(),
+              )
             ],
       ),
     );

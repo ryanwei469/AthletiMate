@@ -38,12 +38,6 @@ class _BottomBarState extends State<BottomBar> {
           MaterialPageRoute(builder: (context) => Search()),
         );
         break;
-      case 3:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Settings()),
-        );
-        break;
     }
   }
 
@@ -78,8 +72,6 @@ class _BottomBarState extends State<BottomBar> {
               _buildBottomNavItem(Icons.location_on_rounded, 1),
               _buildHorizontalLine(),
               _buildBottomNavItem(Icons.search_rounded, 2),
-              _buildHorizontalLine(),
-              _buildBottomNavItem(Icons.settings, 3),
             ],
           ),
         ),
