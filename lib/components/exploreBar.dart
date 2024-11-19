@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 
 class ExploreBar extends StatelessWidget implements PreferredSizeWidget {
+  // For bottombar
+  final FocusNode searchFocusNode;
+
+  ExploreBar({required this.searchFocusNode});
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -50,6 +55,7 @@ class ExploreBar extends StatelessWidget implements PreferredSizeWidget {
               border: Border.all(color: Colors.grey[800]!), // Dark grey border
             ),
             child: TextField(
+              focusNode: searchFocusNode, // Attach the passed FocusNode here
               decoration: InputDecoration(
                 hintText: "Search", // Placeholder text
                 prefixIcon: Icon(

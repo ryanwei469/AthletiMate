@@ -46,15 +46,6 @@ class _BottomBarState extends State<BottomBar> {
     return Stack(
       alignment: AlignmentDirectional.bottomStart,
       children: [
-        // ClipPath(
-        //   clipper: WaveClipper(),
-        //   child: Image.asset(
-        //     "assets/bottomImage.jpg",
-        //     width: MediaQuery.of(context).size.width,
-        //     height: 100,
-        //     fit: BoxFit.cover, // Use cover to maintain aspect ratio
-        //   ),
-        // ),
         Image.asset(
           "assets/bottomImage.jpg", // your image url goes here
           width: MediaQuery.of(context).size.width,
@@ -99,33 +90,3 @@ class _BottomBarState extends State<BottomBar> {
     );
   }
 }
-
-// class WaveClipper extends CustomClipper<Path> {
-//   @override
-//   Path getClip(Size size) {
-//     Path path = Path();
-//     // Start from the bottom left corner
-//     path.lineTo(0, size.height);
-    
-//     // Half wave on the left
-//     path.quadraticBezierTo(size.width * 0.25, size.height - 40, size.width * 0.5, size.height);
-    
-//     // Full wave in the center
-//     path.quadraticBezierTo(size.width * 0.75, size.height + 40, size.width, size.height);
-//     path.quadraticBezierTo(size.width * 1.25, size.height - 40, size.width * 1.5, size.height); // Peak to peak of full wave
-
-//     // Half wave on the right
-//     path.quadraticBezierTo(size.width * 1.75, size.height + 40, size.width, size.height);
-    
-//     // Close the path
-//     path.lineTo(size.width, size.height);
-//     path.close();
-    
-//     return path;
-//   }
-
-//   @override
-//   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-//     return true; // You can optimize this depending on your use case
-//   }
-// }
