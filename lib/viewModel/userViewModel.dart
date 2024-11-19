@@ -1,13 +1,5 @@
 // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-// // Create an admin user
-// Future<void> createAdminUser(UserModel user) async{
-//   await _firestore.collection('users').add({
-//     'name': 'admin_${user.name}',
-//     'email': user.email
-//   });
-// }
-
 // // Read user info
 // Future<UserModel?> getUser(String userId) async {
 //   DocumentSnapshot snapshot = await _firestore.collection('users').doc(userId).get();
@@ -41,3 +33,4 @@
 // Future<void> deleteUser(String userId) async{
 //   await _firestore.collection('users').doc(userId).delete();
 // }
+

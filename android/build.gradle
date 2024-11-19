@@ -1,3 +1,24 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Use the latest stable version of Android Gradle plugin (AGP)
+        classpath 'com.android.tools.build:gradle:8.0.0'  // or the latest version
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"  // Correct Kotlin version
+        classpath "com.google.gms:google-services:4.3.13"
+    }
+}
+
+plugins {
+    // Add the dependency for the Google services Gradle plugin
+    id 'com.google.gms.google-services' version '4.3.13' apply false
+
+    // Add the Kotlin Gradle plugin
+    id 'org.jetbrains.kotlin.android' version '1.9.0' apply false
+}
+
 allprojects {
     repositories {
         google()

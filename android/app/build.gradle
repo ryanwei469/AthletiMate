@@ -1,8 +1,26 @@
 plugins {
     id "com.android.application"
-    id "kotlin-android"
+    // id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+
+    // New change: Firebase integration
+    id 'com.google.gms.google-services'
+
+    // Update kotlin
+    id 'org.jetbrains.kotlin.android'
+}
+
+dependencies {
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:33.6.0')
+
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-storage'
 }
 
 def localProperties = new Properties()
@@ -25,7 +43,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace = "com.example.athletimate"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 34
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -39,7 +57,7 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdk = 23
-        targetSdk = flutter.targetSdkVersion
+        targetSdk = 34
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }
@@ -50,6 +68,21 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.debug
         }
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"  // Set Kotlin JVM target to 1.8
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8  // Set Java source compatibility to 1.8
+        targetCompatibility = JavaVersion.VERSION_1_8  // Set Java target compatibility to 1.8
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)  // Ensure the project uses Java 8
     }
 }
 
