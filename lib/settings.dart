@@ -261,7 +261,9 @@
 //   }
 // }
 import 'package:athletimate/components/topBar.dart';
+import 'package:athletimate/opening.dart';
 import 'package:athletimate/signIn.dart';
+import 'package:athletimate/signUp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -272,7 +274,7 @@ class Settings extends StatelessWidget {
     try {
       await FirebaseAuth.instance.signOut(); // Sign out the user
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => SignIn()),
+        MaterialPageRoute(builder: (context) => Opening()),
         (route) => false, // Remove all routes
       );
     } catch (e) {

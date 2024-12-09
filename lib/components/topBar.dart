@@ -7,12 +7,18 @@ AppBar TopBar(BuildContext context) {
     toolbarHeight: 50,
     backgroundColor: Colors.white,
     elevation: 0, // Optional: Remove shadow if desired
-    title: Column(
+    title: Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text("Athletimate"),
+          child: Text("ATHLETIMATE",
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold
+            ),
+          ),
         ),
       ],
     ),

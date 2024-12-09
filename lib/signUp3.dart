@@ -95,6 +95,7 @@
 // }
 
 import 'dart:io';
+import 'package:athletimate/components/topBar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:athletimate/viewModel/userViewModel.dart';
@@ -173,42 +174,93 @@ class _SignUp3State extends State<SignUp3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Sign Up - Add Photo")),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      appBar: TopBar(context),
+      body: SingleChildScrollView(
+        child: Stack(
           children: [
-            CircleAvatar(
-              radius: 80,
-              backgroundImage: _selectedPhoto != null ? FileImage(_selectedPhoto!) : null,
-              child: _selectedPhoto == null
-                  ? Icon(Icons.person, size: 80, color: Colors.grey)
-                  : null,
+            Positioned.fill(
+              child: Image.asset(
+                'assets/bg3.jpg',
+                fit: BoxFit.cover,
+              ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _pickPhoto,
-              child: Text("Add a Photo"),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _finalizeSignup,
-              child: Text("Finish Sign-Up"),
-            ),
-            SizedBox(height: 20),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // SizedBox(height: 100),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 150, bottom: 30),
+                    child: Text(
+                      "ADD PROFILE PHOTO",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 50),
+                  CircleAvatar(
+                    radius: 80,
+                    backgroundImage: _selectedPhoto != null ? FileImage(_selectedPhoto!) : null,
+                    child: _selectedPhoto == null
+                        ? Icon(Icons.person, size: 80, color: Colors.grey)
+                        : null,
+                  ),
+                  SizedBox(height: 50),
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      child: ElevatedButton(
+                        onPressed: _pickPhoto,
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Color(0xFF1145A8)),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                          ),
+                          padding: MaterialStateProperty.all<EdgeInsets>(
+                            const EdgeInsets.symmetric(vertical: 15),
+                          ),
+                        ),
+                        child: const Text(
+                          "Add a photo",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
 
-            // Test data
-            Text(widget.name + widget.pwd +" " +widget.email),
-            Text(widget.dob + widget.selectedSports.join(", ")),
-            Text(_selectedPhoto?.path ?? "No photo selected"),
-            
-            TextButton(
-              onPressed: _finalizeSignup, // Skip profile photo
-              child: Text("Skip"),
+                  // Test data
+                  // Text(widget.name + widget.pwd +" " +widget.email),
+                  // Text(widget.dob + widget.selectedSports.join(", ")),
+                  // Text(_selectedPhoto?.path ?? "No photo selected"),
+                  
+                  TextButton(
+                    // onPressed: _finalizeSignup, // Skip profile photo
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Dashboard())
+                      );
+                    },
+                    child: Text("Skip",
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 60),
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
+          ]
+        )
+      )
     );
   }
 }
