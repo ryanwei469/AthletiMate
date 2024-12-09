@@ -200,7 +200,7 @@ class _SignUp3State extends State<SignUp3> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(height: 20),
                   CircleAvatar(
                     radius: 80,
                     backgroundImage: _selectedPhoto != null ? FileImage(_selectedPhoto!) : null,
@@ -208,7 +208,7 @@ class _SignUp3State extends State<SignUp3> {
                         ? Icon(Icons.person, size: 80, color: Colors.grey)
                         : null,
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(height: 30),
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: SizedBox(
@@ -229,6 +229,35 @@ class _SignUp3State extends State<SignUp3> {
                         ),
                         child: const Text(
                           "Add a photo",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => Dashboard())
+                          );
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Color(0xFF1145A8)),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                          ),
+                          padding: MaterialStateProperty.all<EdgeInsets>(
+                            const EdgeInsets.symmetric(vertical: 15),
+                          ),
+                        ),
+                        child: const Text(
+                          "Finish Sign Up",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
